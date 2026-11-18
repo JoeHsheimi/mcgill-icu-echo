@@ -1,1 +1,1 @@
-# mcgill-icu-echo
+# McGill-ICU-Echo
