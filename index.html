@@ -7,19 +7,21 @@
 <style>
 :root{--navy:#0b2a4a;--teal:#0ea5a0;--bg:#f4f6fa;--card:#fff;--muted:#5b6b82}
 *{box-sizing:border-box}
-body{font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:#132033}
-.topbar{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.brand h1{margin:0;font-size:22px;letter-spacing:.2px}
-.brand p{margin:2px 0 0;font-size:13px;opacity:.8}
-.topbar .login-pill{background:#fff;color:var(--navy);border:0;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}
-.hero{background:linear-gradient(135deg,#0b2a4a 0%,#143e6b 55%,#0ea5a0 135%);color:#fff;padding:44px 24px}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:#132033;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--navy);color:#fff;padding:22px 24px;display:flex;align-items:center;justify-content:center;position:relative;text-align:center}
+.brand{flex:1;text-align:center}
+.brand h1{margin:0;font-size:38px;letter-spacing:.2px}
+.brand p{margin:6px 0 0;font-size:16px;opacity:.85}
+.topbar .login-pill{position:absolute;right:24px;top:50%;transform:translateY(-50%);background:#fff;color:var(--navy);border:0;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}
+.hero{background:linear-gradient(135deg,#0b2a4a 0%,#143e6b 55%,#0ea5a0 135%);color:#fff;padding:28px 24px}
 .hero-inner{max-width:1080px;margin:auto}
-.hero h2{margin:0 0 10px;font-size:36px;line-height:1.1}
-.hero p{margin:0;font-size:17px;opacity:.9;max-width:720px}
+.hero h2{margin:0 0 8px;font-size:24px;line-height:1.2}
+.hero p{margin:0;font-size:15px;opacity:.9;max-width:720px}
 nav.tabs{max-width:1080px;margin:16px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
 nav.tabs button{padding:10px 16px;border-radius:999px;border:1px solid var(--navy);background:#fff;cursor:pointer;font-weight:600}
 nav.tabs button.active{background:var(--navy);color:#fff}
-main{max-width:1080px;margin:auto;padding:18px 24px 40px}
+main{max-width:1080px;margin:auto;padding:18px 24px 40px;width:100%;flex:1}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .filters button{padding:8px 14px;border-radius:999px;border:1px solid #c6d2e2;background:#fff;cursor:pointer;font-size:13px}
 .filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
@@ -47,8 +49,8 @@ textarea{min-height:90px}
 .cat-row button{white-space:nowrap;width:auto}
 .hint{font-size:13px;color:var(--muted)}
 .find-row{display:flex;gap:12px;margin:8px 0;padding:10px;border:1px solid #e1e8f2;border-radius:10px;background:#fff}
-footer{background:var(--navy);color:#cbd8e8;padding:22px;text-align:center;font-size:13px;margin-top:20px}
-@media(max-width:860px){.grid{grid-template-columns:1fr}.hero h2{font-size:28px}}
+footer{background:var(--navy);color:#cbd8e8;padding:18px;text-align:center;font-size:13px;margin-top:auto}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.brand h1{font-size:28px}.hero h2{font-size:20px}.topbar .login-pill{position:static;transform:none;margin-left:12px}.topbar{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -66,7 +68,6 @@ footer{background:var(--navy);color:#cbd8e8;padding:22px;text-align:center;font-
 <button id="tab-library" class="active" onclick="showTab('library')">Library - Learning Mode</button>
 <button id="tab-quiz" onclick="showTab('quiz')">Quiz Mode</button>
 <button id="tab-protocols" onclick="showTab('protocols')">Protocols/Learning Material</button>
-<button id="tab-admin" onclick="showTab('admin')">Login</button>
 </nav>
 <main>
 <div id="view-library">
@@ -155,7 +156,12 @@ footer{background:var(--navy);color:#cbd8e8;padding:22px;text-align:center;font-
 const ADMIN_PASSWORD = "mcgill123";
 const DEFAULT_CATEGORIES = ["Cardiac - TTE","Cardiac - TEE","Cardiac - Interventional","Lung","Abdominal","FAST/eFAST","Vascular","Ultrasound - Guided Procedures","Resuscitative Echocardiography"];
 const DEFAULT_SITE = {title:"McGill ICU Echo", subtitle:"Critical Care Ultrasonography Teaching Files"};
-const DEFAULT_CASES = [{id:"tamponade-1",title:"Tamponade - TEE Requested After Suboptimal TTE",category:"Cardiac - TEE",vignette:"64-year-old female admitted to ICU with severe cellulitis, develops progressive hypotension refractory to vasopressors. Suboptimal transthoracic imaging by ICU team suggests possible pericardial effusion. TEE requested. See clips below.",videos:["https://www.w3schools.com/html/mov_bbb.mp4","https://www.w3schools.com/html/movie.mp4"],quiz:"You see the vignette + clips above. What is the key diagnosis and what two echo signs support tamponade physiology?",findings:"1. Large circumferential pericardial effusion\n2. Right atrial systolic collapse\n3. Right ventricular diastolic collapse",findingsItems:[{text:"1. Large circumferential pericardial effusion",media:""},{text:"2. Right atrial systolic collapse",media:""},{text:"3. Right ventricular diastolic collapse",media:""}]}];
+const DEFAULT_CASES = [
+{id:"tamponade-1",title:"Tamponade - TEE Requested After Suboptimal TTE",category:"Cardiac - TEE",vignette:"64-year-old female admitted to ICU with severe cellulitis, develops progressive hypotension refractory to vasopressors. Suboptimal transthoracic imaging by ICU team suggests possible pericardial effusion. TEE requested. See clips below.",videos:["https://www.w3schools.com/html/mov_bbb.mp4","https://www.w3schools.com/html/movie.mp4"],quiz:"You see the vignette + clips above. What is the key diagnosis and what two echo signs support tamponade physiology?",findings:"1. Large circumferential pericardial effusion\n2. Right atrial systolic collapse\n3. Right ventricular diastolic collapse",findingsItems:[{text:"1. Large circumferential pericardial effusion",media:""},{text:"2. Right atrial systolic collapse",media:""},{text:"3. Right ventricular diastolic collapse",media:""}]},
+{id:"tte-ie-1",title:"Transthoracic Infective Endocarditis - Test Case",category:"Cardiac - TTE",vignette:"58-year-old male with fever, bacteremia and new murmur. TTE requested to rule out endocarditis. Placeholder vignette for testing.",videos:["https://www.w3schools.com/html/mov_bbb.mp4"],quiz:"What vegetations or valve lesions do you see? Which valve is involved?",findings:"Placeholder discussion:\n1. Mobile echodensity on valve leaflet suggestive of vegetation\n2. Assess valve regurgitation severity\n3. Look for abscess, perforation, dehiscence",findingsItems:[{text:"Mobile echodensity on valve leaflet suggestive of vegetation",media:""},{text:"Assess valve regurgitation severity",media:""},{text:"Look for abscess, perforation, dehiscence",media:""}]},
+{id:"tee-ie-1",title:"Transesophageal Infective Endocarditis - Test Case",category:"Cardiac - TEE",vignette:"62-year-old female with prosthetic valve and persistent bacteremia. Suboptimal TTE. TEE requested. Placeholder vignette for testing.",videos:["https://www.w3schools.com/html/mov_bbb.mp4"],quiz:"What does TEE add over TTE here? Describe vegetation size, location and complications.",findings:"Placeholder discussion:\n1. TEE better for prosthetic valve and anterior structures\n2. Measure vegetation size and mobility\n3. Evaluate for paravalvular abscess or leaflet perforation",findingsItems:[{text:"TEE better for prosthetic valve evaluation",media:""},{text:"Measure vegetation size and mobility",media:""},{text:"Evaluate for paravalvular abscess or perforation",media:""}]},
+{id:"peri-1",title:"Pericardiocentesis - Ultrasound-Guided - Test Case",category:"Ultrasound - Guided Procedures",vignette:"Patient with large pericardial effusion referred for ultrasound-guided pericardiocentesis. Placeholder for procedural steps and clips.",videos:["https://www.w3schools.com/html/mov_bbb.mp4"],quiz:"What is the safe window? Describe needle trajectory and monitoring during drainage.",findings:"Placeholder discussion:\n1. Confirm effusion size and location\n2. Choose subxiphoid vs apical window under ultrasound\n3. Continuous visualization of needle tip and wire",findingsItems:[{text:"Confirm effusion size and location",media:""},{text:"Choose subxiphoid vs apical window under ultrasound",media:""},{text:"Continuous visualization of needle tip and wire",media:""}]}
+];
 const DEFAULT_PROTOCOLS = [];
 let siteSettings=DEFAULT_SITE;
 try{siteSettings=JSON.parse(localStorage.getItem("mcgill_echo_site"))||DEFAULT_SITE;}catch(e){siteSettings=DEFAULT_SITE;}
@@ -170,7 +176,7 @@ function applySiteSettings(){document.getElementById("site-title").textContent=s
 function saveSiteSettings(){let t=document.getElementById("f-sitetitle").value.trim()||DEFAULT_SITE.title;let s=document.getElementById("f-sitesubtitle").value.trim()||DEFAULT_SITE.subtitle;siteSettings={title:t,subtitle:s};localStorage.setItem("mcgill_echo_site",JSON.stringify(siteSettings));applySiteSettings();document.getElementById("site-msg").textContent="Saved! Export + upload to share with everyone.";}
 function checkLogin(){let p=document.getElementById("f-password").value;if(p===ADMIN_PASSWORD){isLoggedIn=true;document.getElementById("login-gate").classList.add("hidden");document.getElementById("admin-content").classList.remove("hidden");document.getElementById("login-msg").textContent="";document.getElementById("f-password").value="";applySiteSettings();renderCatManager();renderAdmin();renderAdminProtos();if(document.getElementById("findings-builder").children.length===0){addFindingRow('','');}}else{document.getElementById("login-msg").textContent="Incorrect password.";}}
 function logout(){isLoggedIn=false;document.getElementById("login-gate").classList.remove("hidden");document.getElementById("admin-content").classList.add("hidden");showTab('library');}
-function showTab(t){["library","quiz","protocols","admin"].forEach(x=>{document.getElementById("view-"+x).classList.add("hidden");document.getElementById("tab-"+x).classList.remove("active");});document.getElementById("view-"+t).classList.remove("hidden");document.getElementById("tab-"+t).classList.add("active");if(t==="admin"){if(isLoggedIn){document.getElementById("login-gate").classList.add("hidden");document.getElementById("admin-content").classList.remove("hidden");applySiteSettings();renderCatManager();renderAdmin();renderAdminProtos();}else{document.getElementById("login-gate").classList.remove("hidden");document.getElementById("admin-content").classList.add("hidden");}}}
+function showTab(t){["library","quiz","protocols","admin"].forEach(x=>{var v=document.getElementById("view-"+x);if(v)v.classList.add("hidden");var b=document.getElementById("tab-"+x);if(b)b.classList.remove("active");});document.getElementById("view-"+t).classList.remove("hidden");var tb=document.getElementById("tab-"+t);if(tb)tb.classList.add("active");if(t==="admin"){if(isLoggedIn){document.getElementById("login-gate").classList.add("hidden");document.getElementById("admin-content").classList.remove("hidden");applySiteSettings();renderCatManager();renderAdmin();renderAdminProtos();}else{document.getElementById("login-gate").classList.remove("hidden");document.getElementById("admin-content").classList.add("hidden");}}}
 function refreshCategorySelect(){const sel=document.getElementById("f-category");sel.innerHTML="";categories.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o);});}
 function buildFilters(elId,fn){const el=document.getElementById(elId);el.innerHTML="";let b=document.createElement("button");b.textContent="All";b.className="active";b.onclick=(e)=>{[...el.children].forEach(c=>c.classList.remove("active"));e.target.classList.add("active");fn("All")};el.appendChild(b);categories.forEach(c=>{let btn=document.createElement("button");btn.textContent=c;btn.onclick=(e)=>{[...el.children].forEach(x=>x.classList.remove("active"));e.target.classList.add("active");fn(c)};el.appendChild(btn);});refreshCategorySelect();}
 function renderCatManager(){const el=document.getElementById("cat-manager");el.innerHTML="";categories.forEach((c,i)=>{let row=document.createElement("div");row.className="cat-row";let inp=document.createElement("input");inp.value=c;inp.id="cat-"+i;let ren=document.createElement("button");ren.className="btn";ren.textContent="Rename";ren.onclick=()=>{let v=document.getElementById("cat-"+i).value.trim();if(!v)return;let old=categories[i];categories[i]=v;cases.forEach(cs=>{if(cs.category===old)cs.category=v;});saveCasesLS();saveCats();rebuildAll();};let del=document.createElement("button");del.className="btn2";del.textContent="Delete";del.onclick=()=>{if(!confirm("Delete category '"+categories[i]+"'?"))return;categories.splice(i,1);saveCats();rebuildAll();};row.appendChild(inp);row.appendChild(ren);row.appendChild(del);el.appendChild(row);});}
