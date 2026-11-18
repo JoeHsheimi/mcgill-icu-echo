@@ -5,48 +5,64 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>McGill ICU Echo</title>
 <style>
-body{font-family:system-ui,Arial,sans-serif;margin:0;background:#f6f8fb;color:#111}
-header{background:#0b2a4a;color:#fff;padding:18px 20px}
-header h1{margin:0;font-size:22px}
-header p{margin:4px 0 0;opacity:.8}
-nav{display:flex;gap:8px;padding:12px 20px;background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;flex-wrap:wrap}
-nav button{padding:9px 14px;border:1px solid #0b2a4a;background:#fff;border-radius:8px;cursor:pointer}
-nav button.active{background:#0b2a4a;color:#fff}
-main{padding:20px;max-width:1000px;margin:auto}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-.filters button{padding:7px 12px;border-radius:20px;border:1px solid #aaa;background:#fff;cursor:pointer}
-.filters button.active{background:#0b2a4a;color:#fff;border-color:#0b2a4a}
-.card{background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0}
-.card h3{margin:0 0 6px}
-.click-title{cursor:pointer;color:#0b2a4a;text-decoration:underline}
-.badge{display:inline-block;background:#e6eef7;color:#0b2a4a;padding:3px 10px;border-radius:20px;font-size:12px;margin-bottom:8px}
-video,img.find-media{width:100%;max-width:480px;background:#000;border-radius:8px;margin:8px 8px 8px 0}
+:root{--navy:#0b2a4a;--teal:#0ea5a0;--bg:#f4f6fa;--card:#fff;--muted:#5b6b82}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;margin:0;background:var(--bg);color:#132033}
+.topbar{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand h1{margin:0;font-size:22px;letter-spacing:.2px}
+.brand p{margin:2px 0 0;font-size:13px;opacity:.8}
+.topbar .login-pill{background:#fff;color:var(--navy);border:0;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700}
+.hero{background:linear-gradient(135deg,#0b2a4a 0%,#143e6b 55%,#0ea5a0 135%);color:#fff;padding:44px 24px}
+.hero-inner{max-width:1080px;margin:auto}
+.hero h2{margin:0 0 10px;font-size:36px;line-height:1.1}
+.hero p{margin:0;font-size:17px;opacity:.9;max-width:720px}
+nav.tabs{max-width:1080px;margin:16px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
+nav.tabs button{padding:10px 16px;border-radius:999px;border:1px solid var(--navy);background:#fff;cursor:pointer;font-weight:600}
+nav.tabs button.active{background:var(--navy);color:#fff}
+main{max-width:1080px;margin:auto;padding:18px 24px 40px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.filters button{padding:8px 14px;border-radius:999px;border:1px solid #c6d2e2;background:#fff;cursor:pointer;font-size:13px}
+.filters button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid #e1e8f2;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(11,42,74,.06)}
+.card h3{margin:8px 0 6px;color:var(--navy);font-size:17px}
+.click-title{cursor:pointer;text-decoration:underline}
+.badge{display:inline-block;background:#e6f6f5;color:#0b4a48;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.muted{color:var(--muted);font-size:14px}
+.section-sub{color:var(--muted);font-size:15px;margin:4px 0 8px}
+video,img.find-media{width:100%;max-width:520px;background:#000;border-radius:10px;margin:8px 8px 8px 0}
 img.find-media{background:#fff;border:1px solid #ddd}
-.btn{background:#0b2a4a;color:#fff;border:0;padding:9px 14px;border-radius:8px;cursor:pointer;margin:6px 6px 0 0}
-.btn2{background:#fff;color:#0b2a4a;border:1px solid #0b2a4a;padding:9px 14px;border-radius:8px;cursor:pointer}
+.btn{background:var(--navy);color:#fff;border:0;padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:700;margin:6px 6px 0 0}
+.btn2{background:#fff;color:var(--navy);border:1px solid var(--navy);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:600}
 .hidden{display:none}
-label{display:block;margin:10px 0 4px;font-weight:bold}
-input,textarea,select{width:100%;padding:9px;border:1px solid #bbb;border-radius:8px}
-textarea{min-height:80px}
-.step{background:#eef4fb;border-left:4px solid #0b2a4a;padding:10px 12px;margin:10px 0;border-radius:0 8px 8px 0}
-.find-row{display:flex;gap:12px;align-items:flex-start;margin:10px 0;padding:10px;background:#fff;border:1px solid #ddd;border-radius:8px}
-.find-row .ft{flex:1}
-.find-row .fm{flex:1}
+label{display:block;margin:12px 0 4px;font-weight:700;font-size:14px}
+input,textarea,select{width:100%;padding:10px;border:1px solid #c2cede;border-radius:10px;font-size:14px}
+textarea{min-height:90px}
+.step{background:#eaf2ff;border-left:4px solid var(--navy);padding:12px 14px;margin:12px 0;border-radius:0 10px 10px 0}
+.fline{border:1px solid #e1e8f2;border-radius:10px;padding:12px;margin:10px 0;background:#fff}
 .navrow{display:flex;justify-content:space-between;margin-top:12px}
 .navrow .left{display:flex;gap:8px}
 .cat-row{display:flex;gap:8px;margin:8px 0;align-items:center}
 .cat-row input{flex:1}
-.cat-row button{white-space:nowrap;width:auto;padding:9px 12px}
-.hint{font-size:13px;opacity:.8}
-.fline{border:1px solid #dde6f0;border-radius:8px;padding:10px;margin:8px 0;background:#fff}
+.cat-row button{white-space:nowrap;width:auto}
+.hint{font-size:13px;color:var(--muted)}
+.find-row{display:flex;gap:12px;margin:8px 0;padding:10px;border:1px solid #e1e8f2;border-radius:10px;background:#fff}
+footer{background:var(--navy);color:#cbd8e8;padding:22px;text-align:center;font-size:13px;margin-top:20px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.hero h2{font-size:28px}}
 </style>
 </head>
 <body>
-<header>
-<h1 id="site-title">McGill ICU Echo</h1>
-<p id="site-subtitle">Critical Care Ultrasonography Teaching Files</p>
-</header>
-<nav>
+<div class="topbar">
+<div class="brand"><h1 id="site-title">McGill ICU Echo</h1><p id="site-subtitle">Critical Care Ultrasonography Teaching Files</p></div>
+<button class="login-pill" onclick="showTab('admin')">Editor Login</button>
+</div>
+<div class="hero">
+<div class="hero-inner">
+<h2>Master Critical Care Echo At The Bedside</h2>
+<p>Structured library, quiz mode and protocols for ICU echo.</p>
+</div>
+</div>
+<nav class="tabs">
 <button id="tab-library" class="active" onclick="showTab('library')">Library - Learning Mode</button>
 <button id="tab-quiz" onclick="showTab('quiz')">Quiz Mode</button>
 <button id="tab-protocols" onclick="showTab('protocols')">Protocols/Learning Material</button>
@@ -55,25 +71,28 @@ textarea{min-height:80px}
 <main>
 <div id="view-library">
 <h2>Learning Mode - Browse By Category</h2>
+<p class="section-sub">Explore cases by topic and build your pattern recognition.</p>
 <div class="filters" id="lib-filters"></div>
-<div id="lib-list"></div>
+<div id="lib-list" class="grid"></div>
 <div id="lib-detail"></div>
 </div>
 <div id="view-quiz" class="hidden">
 <h2>Quiz Mode</h2>
+<p class="section-sub">Take the same cases as unknowns and test your read before the reveal.</p>
 <div class="filters" id="quiz-filters"></div>
-<div id="quiz-list"></div>
+<div id="quiz-list" class="grid"></div>
 <div id="quiz-detail"></div>
 </div>
 <div id="view-protocols" class="hidden">
 <h2>Protocols/Learning Material</h2>
-<p>Protocols And Learning Material Coming Soon - Check Back For Updates.</p>
+<p class="section-sub">Review existing protocols and links to society guidelines.</p>
+<p class="muted">Protocols And Learning Material Coming Soon - Check Back For Updates.</p>
 <div id="proto-list"></div>
 </div>
 <div id="view-admin" class="hidden">
 <div id="login-gate" class="card">
 <h2>Editor Login</h2>
-<p>Enter editor password to manage cases and categories.</p>
+<p class="muted">Enter editor password to manage cases and categories.</p>
 <label>Password</label>
 <input id="f-password" type="password" placeholder="Enter password">
 <button class="btn" onclick="checkLogin()">Login</button>
@@ -82,7 +101,6 @@ textarea{min-height:80px}
 <div id="admin-content" class="hidden">
 <h2>Site Settings - Title And Subtitle</h2>
 <div class="card">
-<p class="hint">This changes the top-left header for everyone once you Export + upload cases.json.</p>
 <label>Site Title</label>
 <input id="f-sitetitle" placeholder="McGill ICU Echo">
 <label>Subtitle</label>
@@ -94,31 +112,22 @@ textarea{min-height:80px}
 <div class="card">
 <div id="cat-manager"></div>
 <label>Add New Category</label>
-<div class="cat-row">
-<input id="f-newcat" placeholder="e.g. Cardiac - TTE">
-<button class="btn" onclick="addCategory()">Add</button>
-</div>
+<div class="cat-row"><input id="f-newcat" placeholder="e.g. Cardiac - TTE"><button class="btn" onclick="addCategory()">Add</button></div>
 <button class="btn2" onclick="resetCategories()">Reset Categories To Default</button>
 </div>
 <h2 id="case-form-title">Add A New Case</h2>
 <div class="card">
 <label>Case Title</label>
 <input id="f-title" placeholder="insert case title here">
-<label>Category</label>
-<select id="f-category"></select>
-<label>Clinical Vignette</label>
-<textarea id="f-vignette" placeholder="Short clinical case..."></textarea>
+<label>Category</label><select id="f-category"></select>
+<label>Clinical Vignette</label><textarea id="f-vignette" placeholder="Short clinical case..."></textarea>
 <label>Video Files From Your Computer (MP4)</label>
 <input id="f-videofiles" type="file" accept="video/mp4,video/*,.mp4" multiple>
-<p class="hint" id="file-hint">Pick MP4s from desktop. Then upload those same files to the GitHub videos/ folder or SharePoint EchoVideos. The case will link to videos/your-file.mp4.</p>
-<label>Or Paste Video Links - One Per Line (Optional)</label>
-<textarea id="f-videos" placeholder="https://.../clip1.mp4"></textarea>
-<label>Quiz Question (Shown Only In Quiz Mode)</label>
-<textarea id="f-quiz" placeholder="What is the key finding?"></textarea>
-<label>Findings / Case Discussion - Add One Line At A Time, With Optional Photo Or Clip Next To Each Line</label>
+<label>Or Paste Video Links - One Per Line (Optional)</label><textarea id="f-videos" placeholder="https://.../clip1.mp4"></textarea>
+<label>Quiz Question (Shown Only In Quiz Mode)</label><textarea id="f-quiz" placeholder="What is the key finding?"></textarea>
+<label>Findings / Case Discussion - Add One Line At A Time</label>
 <div id="findings-builder"></div>
-<button class="btn2" onclick="addFindingRow('','')">+ Add Finding Line</button>
-<p class="hint">Example: Line 1 Text = Large circumferential pericardial effusion + Line 1 Media = photo with arrow. Line 2 Text = Right atrial systolic collapse + Line 2 Media = clip link. Leave media empty for text-only lines.</p>
+<button class="btn2" onclick="addFindingRow('','')">+ Add Finding Line</button><br>
 <button class="btn" id="save-case-btn" onclick="saveCase()">Save Case</button>
 <button class="btn2 hidden" id="cancel-edit-btn" onclick="cancelEdit()">Cancel Edit</button>
 <button class="btn2" onclick="exportCases()">Export Cases File For GitHub</button>
@@ -126,16 +135,12 @@ textarea{min-height:80px}
 <input type="file" id="f-import" accept=".json,application/json" class="hidden" onchange="importCases(event)">
 <button class="btn2" onclick="logout()">Logout</button>
 <p id="admin-msg"></p>
-<p class="hint">Admin Workflow: Save, Then Export To cases.json And Upload To GitHub With Any New MP4s In videos/. All Visitors Then Auto-Load That Same File.</p>
 </div>
 <h2>Add Protocol / Learning Material</h2>
 <div class="card">
-<label>Protocol Title</label>
-<input id="f-ptitle" placeholder="e.g. Critical care TEE acquisition protocol">
-<label>Subheader / Section (Optional - Create Only When Needed)</label>
-<input id="f-psection" placeholder="e.g. TEE Protocols, Checklists">
-<label>Content / Steps / Link</label>
-<textarea id="f-pbody" placeholder="Paste protocol text, steps, PDF link, etc..."></textarea>
+<label>Protocol Title</label><input id="f-ptitle" placeholder="e.g. Critical care TEE acquisition protocol">
+<label>Subheader / Section (Optional)</label><input id="f-psection" placeholder="e.g. TEE Protocols">
+<label>Content / Steps / Link</label><textarea id="f-pbody" placeholder="Paste protocol text, steps, PDF link..."></textarea>
 <button class="btn" id="save-proto-btn" onclick="saveProtocol()">Save Protocol</button>
 <button class="btn2 hidden" id="cancel-proto-btn" onclick="cancelProtoEdit()">Cancel Edit</button>
 <p id="proto-msg"></p>
@@ -145,336 +150,59 @@ textarea{min-height:80px}
 </div>
 </div>
 </main>
+<footer>McGill ICU Echo - Critical Care Ultrasonography Teaching Files - For Educational Use Only</footer>
 <script>
 const ADMIN_PASSWORD = "mcgill123";
 const DEFAULT_CATEGORIES = ["Cardiac - TTE","Cardiac - TEE","Cardiac - Interventional","Lung","Abdominal","FAST/eFAST","Vascular","Ultrasound - Guided Procedures","Resuscitative Echocardiography"];
 const DEFAULT_SITE = {title:"McGill ICU Echo", subtitle:"Critical Care Ultrasonography Teaching Files"};
-const DEFAULT_CASES = [{
-id:"tamponade-1",
-title:"Tamponade - TEE Requested After Suboptimal TTE",
-category:"Cardiac - TEE",
-vignette:"64-year-old female admitted to ICU with severe cellulitis, develops progressive hypotension refractory to vasopressors. Suboptimal transthoracic imaging by ICU team suggests possible pericardial effusion. TEE requested. See clips below.",
-videos:["https://www.w3schools.com/html/mov_bbb.mp4","https://www.w3schools.com/html/movie.mp4"],
-quiz:"You see the vignette + clips above. What is the key diagnosis and what two echo signs support tamponade physiology?",
-findings:"1. Large circumferential pericardial effusion\n2. Right atrial systolic collapse\n3. Right ventricular diastolic collapse",
-findingsItems:[
-{text:"1. Large circumferential pericardial effusion", media:""},
-{text:"2. Right atrial systolic collapse", media:""},
-{text:"3. Right ventricular diastolic collapse", media:""}
-]}];
+const DEFAULT_CASES = [{id:"tamponade-1",title:"Tamponade - TEE Requested After Suboptimal TTE",category:"Cardiac - TEE",vignette:"64-year-old female admitted to ICU with severe cellulitis, develops progressive hypotension refractory to vasopressors. Suboptimal transthoracic imaging by ICU team suggests possible pericardial effusion. TEE requested. See clips below.",videos:["https://www.w3schools.com/html/mov_bbb.mp4","https://www.w3schools.com/html/movie.mp4"],quiz:"You see the vignette + clips above. What is the key diagnosis and what two echo signs support tamponade physiology?",findings:"1. Large circumferential pericardial effusion\n2. Right atrial systolic collapse\n3. Right ventricular diastolic collapse",findingsItems:[{text:"1. Large circumferential pericardial effusion",media:""},{text:"2. Right atrial systolic collapse",media:""},{text:"3. Right ventricular diastolic collapse",media:""}]}];
 const DEFAULT_PROTOCOLS = [];
-let siteSettings = DEFAULT_SITE;
-try{ siteSettings = JSON.parse(localStorage.getItem("mcgill_echo_site")) || DEFAULT_SITE; }catch(e){ siteSettings = DEFAULT_SITE; }
-let categories = [];
-try{ categories = JSON.parse(localStorage.getItem("mcgill_echo_cats")) || DEFAULT_CATEGORIES.slice(); }catch(e){ categories = DEFAULT_CATEGORIES.slice(); }
-let cases = [];
-try{ cases = JSON.parse(localStorage.getItem("mcgill_echo_cases")) || DEFAULT_CASES; }catch(e){ cases = DEFAULT_CASES; }
-let protocols = [];
-try{ protocols = JSON.parse(localStorage.getItem("mcgill_echo_protos")) || DEFAULT_PROTOCOLS; }catch(e){ protocols = DEFAULT_PROTOCOLS; }
-let isLoggedIn = false;
-let editingCaseId = null;
-let editingProtoId = null;
-function saveCats(){ localStorage.setItem("mcgill_echo_cats", JSON.stringify(categories)); }
-function saveProtos(){ localStorage.setItem("mcgill_echo_protos", JSON.stringify(protocols)); }
-function saveCasesLS(){ localStorage.setItem("mcgill_echo_cases", JSON.stringify(cases)); }
-function applySiteSettings(){
-document.getElementById("site-title").textContent = siteSettings.title;
-document.getElementById("site-subtitle").textContent = siteSettings.subtitle;
-document.title = siteSettings.title;
-let st=document.getElementById("f-sitetitle"); if(st) st.value = siteSettings.title;
-let ss=document.getElementById("f-sitesubtitle"); if(ss) ss.value = siteSettings.subtitle;
-}
-function saveSiteSettings(){
-let t=document.getElementById("f-sitetitle").value.trim() || DEFAULT_SITE.title;
-let s=document.getElementById("f-sitesubtitle").value.trim() || DEFAULT_SITE.subtitle;
-siteSettings={title:t, subtitle:s};
-localStorage.setItem("mcgill_echo_site", JSON.stringify(siteSettings));
-applySiteSettings();
-document.getElementById("site-msg").textContent="Saved! Export + upload to share with everyone.";
-}
-function checkLogin(){
-let p = document.getElementById("f-password").value;
-if(p === ADMIN_PASSWORD){
-isLoggedIn = true;
-document.getElementById("login-gate").classList.add("hidden");
-document.getElementById("admin-content").classList.remove("hidden");
-document.getElementById("login-msg").textContent="";
-document.getElementById("f-password").value="";
-applySiteSettings(); renderCatManager(); renderAdmin(); renderAdminProtos();
-if(document.getElementById("findings-builder").children.length===0){ addFindingRow('',''); addFindingRow('',''); }
-} else { document.getElementById("login-msg").textContent="Incorrect password."; }
-}
-function logout(){
-isLoggedIn = false;
-document.getElementById("login-gate").classList.remove("hidden");
-document.getElementById("admin-content").classList.add("hidden");
-showTab('library');
-}
-function showTab(t){
-["library","quiz","protocols","admin"].forEach(x=>{
-document.getElementById("view-"+x).classList.add("hidden");
-document.getElementById("tab-"+x).classList.remove("active");
-});
-document.getElementById("view-"+t).classList.remove("hidden");
-document.getElementById("tab-"+t).classList.add("active");
-if(t==="admin"){
-if(isLoggedIn){
-document.getElementById("login-gate").classList.add("hidden");
-document.getElementById("admin-content").classList.remove("hidden");
-applySiteSettings(); renderCatManager(); renderAdmin(); renderAdminProtos();
-} else {
-document.getElementById("login-gate").classList.remove("hidden");
-document.getElementById("admin-content").classList.add("hidden");
-}
-}
-}
-function refreshCategorySelect(){
-const sel=document.getElementById("f-category"); sel.innerHTML="";
-categories.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o);});
-}
-function buildFilters(elId, fn){
-const el=document.getElementById(elId); el.innerHTML="";
-let b=document.createElement("button"); b.textContent="All"; b.className="active";
-b.onclick=(e)=>{[...el.children].forEach(c=>c.classList.remove("active"));e.target.classList.add("active");fn("All")};
-el.appendChild(b);
-categories.forEach(c=>{
-let btn=document.createElement("button"); btn.textContent=c;
-btn.onclick=(e)=>{[...el.children].forEach(x=>x.classList.remove("active"));e.target.classList.add("active");fn(c)};
-el.appendChild(btn);
-});
-refreshCategorySelect();
-}
-function renderCatManager(){
-const el=document.getElementById("cat-manager"); el.innerHTML="";
-categories.forEach((c,i)=>{
-let row=document.createElement("div"); row.className="cat-row";
-let inp=document.createElement("input"); inp.value=c; inp.id="cat-"+i;
-let ren=document.createElement("button"); ren.className="btn"; ren.textContent="Rename";
-ren.onclick=()=>{ let v=document.getElementById("cat-"+i).value.trim(); if(!v) return; let old=categories[i]; categories[i]=v; cases.forEach(cs=>{ if(cs.category===old) cs.category=v; }); saveCasesLS(); saveCats(); rebuildAll(); };
-let del=document.createElement("button"); del.className="btn2"; del.textContent="Delete";
-del.onclick=()=>{ if(!confirm("Delete category '"+categories[i]+"'?")) return; categories.splice(i,1); saveCats(); rebuildAll(); };
-row.appendChild(inp); row.appendChild(ren); row.appendChild(del); el.appendChild(row);
-});
-}
-function addCategory(){ let v=document.getElementById("f-newcat").value.trim(); if(!v) return; categories.push(v); saveCats(); document.getElementById("f-newcat").value=""; rebuildAll(); }
-function resetCategories(){ categories=DEFAULT_CATEGORIES.slice(); saveCats(); rebuildAll(); }
-function rebuildAll(){ applySiteSettings(); buildFilters("lib-filters",renderLib); buildFilters("quiz-filters",renderQuizList); renderLib("All"); renderQuizList("All"); renderProtos(); if(isLoggedIn){ renderCatManager(); renderAdmin(); renderAdminProtos(); } }
-function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
-function isVideo(u){ return /\.mp4($|\?)/i.test(u||"") || /video/i.test(u||""); }
-function mediaHtml(u){
-if(!u) return "";
-if(isVideo(u)) return "<video controls preload='metadata' src='"+u+"'></video>";
-return "<img class='find-media' src='"+u+"'>";
-}
-function findingsToItems(c){
-if(c.findingsItems && c.findingsItems.length) return c.findingsItems;
-return (c.findings||"").split("\n").filter(Boolean).map(t=>({text:t, media:""}));
-}
-function findingsHtml(c){
-return findingsToItems(c).map(f=>"<div class='fline'><div>"+esc(f.text).replace(/\n/g,"<br>")+"</div><div>"+mediaHtml(f.media)+"</div></div>").join("");
-}
-function renderLib(filter){
-const list=document.getElementById("lib-list"); list.innerHTML="";
-document.getElementById("lib-detail").innerHTML="";
-cases.filter(c=>!filter||filter==="All"||c.category===filter).forEach(c=>{
-let d=document.createElement("div"); d.className="card";
-d.innerHTML="<div class='badge'>"+esc(c.category)+"</div><h3 class='click-title'>"+esc(c.title)+"</h3><p>"+esc((c.vignette||"").substring(0,120))+"...</p>";
-d.querySelector("h3").onclick=()=>openLearn(c.id,0);
-list.appendChild(d);
-});
-}
-function openLearn(id,step){
-const c=cases.find(x=>x.id===id); if(!c) return;
-const el=document.getElementById("lib-detail");
-let vids=(c.videos||[]).map(v=>"<video controls preload='metadata' src='"+v+"'></video>").join("");
-let body="";
-if(step===0) body="<div class='step'><b>Vignette:</b><br>"+esc(c.vignette).replace(/\n/g,"<br>")+"</div><div class='navrow'><div class='left'><button class='btn' onclick=\"openLearn('"+id+"',1)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";
-if(step===1) body="<div class='step'><b>Clips (Play / Pause):</b><br>"+vids+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openLearn('"+id+"',0)\">Back</button><button class='btn' onclick=\"openLearn('"+id+"',2)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";
-if(step===2) body="<div class='step'><b>Findings / Discussion:</b></div>"+findingsHtml(c)+"<div class='navrow'><div class='left'><button class='btn2' onclick=\"openLearn('"+id+"',1)\">Back</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";
-el.innerHTML="<div class='card'><div class='badge'>"+esc(c.category)+"</div><h3>"+esc(c.title)+"</h3>"+body+"</div>";
-el.scrollIntoView();
-}
-function renderQuizList(filter){
-const list=document.getElementById("quiz-list"); list.innerHTML="";
-document.getElementById("quiz-detail").innerHTML="";
-cases.filter(c=>!filter||filter==="All"||c.category===filter).forEach(c=>{
-let d=document.createElement("div"); d.className="card";
-d.innerHTML="<div class='badge'>"+esc(c.category)+"</div><h3 class='click-title'>"+esc(c.title)+"</h3>";
-d.querySelector("h3").onclick=()=>openQuiz(c.id,0);
-list.appendChild(d);
-});
-}
-function openQuiz(id,step){
-const c=cases.find(x=>x.id===id); if(!c) return;
-const el=document.getElementById("quiz-detail");
-let vids=(c.videos||[]).map(v=>"<video controls preload='metadata' src='"+v+"'></video>").join("");
-let body="";
-if(step===0) body="<div class='step'><b>Vignette:</b><br>"+esc(c.vignette).replace(/\n/g,"<br>")+"</div><div class='navrow'><div class='left'><button class='btn' onclick=\"openQuiz('"+id+"',1)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";
-if(step===1) body="<div class='step'><b>Clips:</b><br>"+vids+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',0)\">Back</button><button class='btn' onclick=\"openQuiz('"+id+"',2)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";
-if(step===2) body="<div class='step'><b>Question:</b><br>"+esc(c.quiz).replace(/\n/g,"<br>")+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',1)\">Back</button><button class='btn' onclick=\"openQuiz('"+id+"',3)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";
-if(step===3) body="<div class='step'><b>Discussion:</b></div>"+findingsHtml(c)+"<div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',2)\">Back</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";
-el.innerHTML="<div class='card'><div class='badge'>"+esc(c.category)+"</div><h3>"+esc(c.title)+"</h3>"+body+"</div>";
-el.scrollIntoView();
-}
-function renderProtos(){
-const list=document.getElementById("proto-list"); list.innerHTML="";
-if(protocols.length===0){ let d=document.createElement("div"); d.className="card"; d.innerHTML="<p>No Entries Yet.</p>"; list.appendChild(d); return; }
-protocols.forEach(p=>{
-let d=document.createElement("div"); d.className="card";
-let sec = p.section ? "<div class='badge'>"+esc(p.section)+"</div><br>" : "";
-d.innerHTML=sec+"<h3>"+esc(p.title)+"</h3><p>"+esc(p.body||"").replace(/\n/g,"<br>")+"</p>";
-list.appendChild(d);
-});
-}
-function addFindingRow(text, media){
-const wrap=document.getElementById("findings-builder");
-let row=document.createElement("div"); row.className="find-row";
-row.innerHTML="<div class='ft'><label>Finding Text</label><input class='fi-text' placeholder='e.g. Large circumferential pericardial effusion'><label>Photo / Clip Link (Optional)</label><input class='fi-media' placeholder='Paste image or MP4 link, or videos/file.mp4'></div><div><button class='btn2'>Remove</button></div>";
-row.querySelector(".fi-text").value=text||"";
-row.querySelector(".fi-media").value=media||"";
-row.querySelector("button").onclick=()=>{ row.remove(); };
-wrap.appendChild(row);
-}
-function collectFindings(){
-let rows=[...document.querySelectorAll("#findings-builder .find-row")];
-let items=rows.map(r=>({text:r.querySelector(".fi-text").value.trim(), media:r.querySelector(".fi-media").value.trim()})).filter(x=>x.text||x.media);
-return items;
-}
-function clearCaseForm(){
-document.getElementById("f-title").value=""; document.getElementById("f-vignette").value="";
-document.getElementById("f-videos").value=""; document.getElementById("f-videofiles").value="";
-document.getElementById("f-quiz").value=""; document.getElementById("findings-builder").innerHTML="";
-addFindingRow('','');
-}
-function saveCase(){
-const title=document.getElementById("f-title").value.trim()||"Untitled";
-const category=document.getElementById("f-category").value;
-const vignette=document.getElementById("f-vignette").value;
-const quiz=document.getElementById("f-quiz").value;
-let vids=document.getElementById("f-videos").value.split("\n").map(s=>s.trim()).filter(Boolean);
-let files=document.getElementById("f-videofiles").files;
-for(let i=0;i<files.length;i++){ vids.push("videos/"+files[i].name); }
-if(vids.length===0) vids=["https://www.w3schools.com/html/mov_bbb.mp4"];
-let items=collectFindings();
-let flat=items.map(x=>x.text).join("\n");
-if(editingCaseId){
-let c=cases.find(x=>x.id===editingCaseId);
-c.title=title; c.category=category; c.vignette=vignette; c.videos=vids; c.quiz=quiz; c.findings=flat; c.findingsItems=items;
-document.getElementById("admin-msg").textContent="Updated! Export + upload to share with everyone.";
-} else {
-cases.push({id:"case-"+Date.now(),title,category,vignette,videos:vids,quiz,findings:flat,findingsItems:items});
-document.getElementById("admin-msg").textContent="Saved Locally! Now Click Export And Upload cases.json + Your MP4s So Everyone Sees It.";
-}
-saveCasesLS(); cancelEdit(); renderLib("All"); renderQuizList("All"); renderAdmin();
-}
-function editCase(id){
-let c=cases.find(x=>x.id===id); if(!c) return;
-editingCaseId=id;
-document.getElementById("f-title").value=c.title;
-document.getElementById("f-category").value=c.category;
-document.getElementById("f-vignette").value=c.vignette||"";
-document.getElementById("f-videos").value=(c.videos||[]).join("\n");
-document.getElementById("f-quiz").value=c.quiz||"";
-let wrap=document.getElementById("findings-builder"); wrap.innerHTML="";
-findingsToItems(c).forEach(f=>addFindingRow(f.text,f.media));
-if(wrap.children.length===0) addFindingRow('','');
-document.getElementById("case-form-title").textContent="Edit Case";
-document.getElementById("save-case-btn").textContent="Update Case";
-document.getElementById("cancel-edit-btn").classList.remove("hidden");
-document.getElementById("case-form-title").scrollIntoView();
-}
-function cancelEdit(){
-editingCaseId=null;
-document.getElementById("case-form-title").textContent="Add A New Case";
-document.getElementById("save-case-btn").textContent="Save Case";
-document.getElementById("cancel-edit-btn").classList.add("hidden");
-clearCaseForm();
-}
-function saveProtocol(){
-const title=document.getElementById("f-ptitle").value||"Untitled protocol";
-const section=document.getElementById("f-psection").value.trim()||"";
-const body=document.getElementById("f-pbody").value||"";
-if(editingProtoId){
-let p=protocols.find(x=>x.id===editingProtoId);
-p.title=title; p.section=section; p.body=body;
-document.getElementById("proto-msg").textContent="Protocol Updated! Export + upload to share.";
-} else {
-protocols.push({id:"proto-"+Date.now(),title,section,body});
-document.getElementById("proto-msg").textContent="Saved! Export + upload to share with everyone.";
-}
-saveProtos(); cancelProtoEdit(); renderProtos(); renderAdminProtos();
-}
-function editProtocol(id){
-let p=protocols.find(x=>x.id===id); if(!p) return;
-editingProtoId=id;
-document.getElementById("f-ptitle").value=p.title;
-document.getElementById("f-psection").value=p.section||"";
-document.getElementById("f-pbody").value=p.body||"";
-document.getElementById("save-proto-btn").textContent="Update Protocol";
-document.getElementById("cancel-proto-btn").classList.remove("hidden");
-}
-function cancelProtoEdit(){
-editingProtoId=null;
-document.getElementById("f-ptitle").value=""; document.getElementById("f-psection").value=""; document.getElementById("f-pbody").value="";
-document.getElementById("save-proto-btn").textContent="Save Protocol";
-document.getElementById("cancel-proto-btn").classList.add("hidden");
-}
-function renderAdmin(){
-const el=document.getElementById("admin-list"); el.innerHTML="<h3>Current Cases ("+cases.length+")</h3>";
-cases.forEach(c=>{
-let d=document.createElement("div"); d.className="card";
-d.innerHTML="<b>"+esc(c.title)+"</b> - "+esc(c.category)+" <span style='float:right'><button class='btn2'>Edit</button> <button class='btn2'>Delete</button></span>";
-let btns=d.querySelectorAll("button");
-btns[0].onclick=()=>editCase(c.id);
-btns[1].onclick=()=>{cases=cases.filter(x=>x.id!==c.id);saveCasesLS();renderAdmin();renderLib("All");renderQuizList("All");};
-el.appendChild(d);
-});
-}
-function renderAdminProtos(){
-const el=document.getElementById("admin-proto-list"); if(!el) return;
-el.innerHTML="<h3>Current Protocols ("+protocols.length+")</h3>";
-protocols.forEach(p=>{
-let d=document.createElement("div"); d.className="card";
-let lbl = p.section ? " ["+esc(p.section)+"]" : "";
-d.innerHTML="<b>"+esc(p.title)+"</b>"+lbl+" <span style='float:right'><button class='btn2'>Edit</button> <button class='btn2'>Delete</button></span>";
-let btns=d.querySelectorAll("button");
-btns[0].onclick=()=>editProtocol(p.id);
-btns[1].onclick=()=>{protocols=protocols.filter(x=>x.id!==p.id);saveProtos();renderProtos();renderAdminProtos();};
-el.appendChild(d);
-});
-}
-function exportCases(){
-const blob=new Blob([JSON.stringify({site:siteSettings,categories:categories,cases:cases,protocols:protocols},null,2)],{type:"application/json"});
-const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="cases.json"; a.click();
-}
-function triggerImport(){ document.getElementById("f-import").click(); }
-function importCases(event){
-const f=event.target.files[0]; if(!f) return;
-const r=new FileReader();
-r.onload=function(){
-try{
-const data=JSON.parse(r.result);
-if(data.cases){ cases=data.cases; } else if(Array.isArray(data)){ cases=data; }
-if(data.categories){ categories=data.categories; saveCats(); }
-if(data.protocols){ protocols=data.protocols; saveProtos(); }
-if(data.site){ siteSettings=data.site; localStorage.setItem("mcgill_echo_site", JSON.stringify(siteSettings)); }
-saveCasesLS(); rebuildAll();
-document.getElementById("admin-msg").textContent="Imported "+cases.length+" cases. All restored.";
-} catch(err){ document.getElementById("admin-msg").textContent="That file could not be read."; }
-};
-r.readAsText(f); event.target.value="";
-}
-applySiteSettings();
-buildFilters("lib-filters",renderLib);
-buildFilters("quiz-filters",renderQuizList);
-renderLib("All"); renderQuizList("All"); renderProtos();
-fetch("cases.json",{cache:"no-store"}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(data){
-if(data.site){ siteSettings=data.site; localStorage.setItem("mcgill_echo_site", JSON.stringify(siteSettings)); }
-if(data.categories && data.categories.length){ categories=data.categories; saveCats(); }
-if(data.cases){ cases=data.cases; saveCasesLS(); }
-if(data.protocols){ protocols=data.protocols; saveProtos(); }
-rebuildAll();
-}).catch(function(){});
+let siteSettings=DEFAULT_SITE;
+try{siteSettings=JSON.parse(localStorage.getItem("mcgill_echo_site"))||DEFAULT_SITE;}catch(e){siteSettings=DEFAULT_SITE;}
+let categories=[];try{categories=JSON.parse(localStorage.getItem("mcgill_echo_cats"))||DEFAULT_CATEGORIES.slice();}catch(e){categories=DEFAULT_CATEGORIES.slice();}
+let cases=[];try{cases=JSON.parse(localStorage.getItem("mcgill_echo_cases"))||DEFAULT_CASES;}catch(e){cases=DEFAULT_CASES;}
+let protocols=[];try{protocols=JSON.parse(localStorage.getItem("mcgill_echo_protos"))||DEFAULT_PROTOCOLS;}catch(e){protocols=DEFAULT_PROTOCOLS;}
+let isLoggedIn=false,editingCaseId=null,editingProtoId=null;
+function saveCats(){localStorage.setItem("mcgill_echo_cats",JSON.stringify(categories));}
+function saveProtos(){localStorage.setItem("mcgill_echo_protos",JSON.stringify(protocols));}
+function saveCasesLS(){localStorage.setItem("mcgill_echo_cases",JSON.stringify(cases));}
+function applySiteSettings(){document.getElementById("site-title").textContent=siteSettings.title;document.getElementById("site-subtitle").textContent=siteSettings.subtitle;document.title=siteSettings.title;let st=document.getElementById("f-sitetitle");if(st)st.value=siteSettings.title;let ss=document.getElementById("f-sitesubtitle");if(ss)ss.value=siteSettings.subtitle;}
+function saveSiteSettings(){let t=document.getElementById("f-sitetitle").value.trim()||DEFAULT_SITE.title;let s=document.getElementById("f-sitesubtitle").value.trim()||DEFAULT_SITE.subtitle;siteSettings={title:t,subtitle:s};localStorage.setItem("mcgill_echo_site",JSON.stringify(siteSettings));applySiteSettings();document.getElementById("site-msg").textContent="Saved! Export + upload to share with everyone.";}
+function checkLogin(){let p=document.getElementById("f-password").value;if(p===ADMIN_PASSWORD){isLoggedIn=true;document.getElementById("login-gate").classList.add("hidden");document.getElementById("admin-content").classList.remove("hidden");document.getElementById("login-msg").textContent="";document.getElementById("f-password").value="";applySiteSettings();renderCatManager();renderAdmin();renderAdminProtos();if(document.getElementById("findings-builder").children.length===0){addFindingRow('','');}}else{document.getElementById("login-msg").textContent="Incorrect password.";}}
+function logout(){isLoggedIn=false;document.getElementById("login-gate").classList.remove("hidden");document.getElementById("admin-content").classList.add("hidden");showTab('library');}
+function showTab(t){["library","quiz","protocols","admin"].forEach(x=>{document.getElementById("view-"+x).classList.add("hidden");document.getElementById("tab-"+x).classList.remove("active");});document.getElementById("view-"+t).classList.remove("hidden");document.getElementById("tab-"+t).classList.add("active");if(t==="admin"){if(isLoggedIn){document.getElementById("login-gate").classList.add("hidden");document.getElementById("admin-content").classList.remove("hidden");applySiteSettings();renderCatManager();renderAdmin();renderAdminProtos();}else{document.getElementById("login-gate").classList.remove("hidden");document.getElementById("admin-content").classList.add("hidden");}}}
+function refreshCategorySelect(){const sel=document.getElementById("f-category");sel.innerHTML="";categories.forEach(c=>{let o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o);});}
+function buildFilters(elId,fn){const el=document.getElementById(elId);el.innerHTML="";let b=document.createElement("button");b.textContent="All";b.className="active";b.onclick=(e)=>{[...el.children].forEach(c=>c.classList.remove("active"));e.target.classList.add("active");fn("All")};el.appendChild(b);categories.forEach(c=>{let btn=document.createElement("button");btn.textContent=c;btn.onclick=(e)=>{[...el.children].forEach(x=>x.classList.remove("active"));e.target.classList.add("active");fn(c)};el.appendChild(btn);});refreshCategorySelect();}
+function renderCatManager(){const el=document.getElementById("cat-manager");el.innerHTML="";categories.forEach((c,i)=>{let row=document.createElement("div");row.className="cat-row";let inp=document.createElement("input");inp.value=c;inp.id="cat-"+i;let ren=document.createElement("button");ren.className="btn";ren.textContent="Rename";ren.onclick=()=>{let v=document.getElementById("cat-"+i).value.trim();if(!v)return;let old=categories[i];categories[i]=v;cases.forEach(cs=>{if(cs.category===old)cs.category=v;});saveCasesLS();saveCats();rebuildAll();};let del=document.createElement("button");del.className="btn2";del.textContent="Delete";del.onclick=()=>{if(!confirm("Delete category '"+categories[i]+"'?"))return;categories.splice(i,1);saveCats();rebuildAll();};row.appendChild(inp);row.appendChild(ren);row.appendChild(del);el.appendChild(row);});}
+function addCategory(){let v=document.getElementById("f-newcat").value.trim();if(!v)return;categories.push(v);saveCats();document.getElementById("f-newcat").value="";rebuildAll();}
+function resetCategories(){categories=DEFAULT_CATEGORIES.slice();saveCats();rebuildAll();}
+function rebuildAll(){applySiteSettings();buildFilters("lib-filters",renderLib);buildFilters("quiz-filters",renderQuizList);renderLib("All");renderQuizList("All");renderProtos();if(isLoggedIn){renderCatManager();renderAdmin();renderAdminProtos();}}
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function isVideo(u){return /\.mp4($|\?)/i.test(u||"")||/video/i.test(u||"");}
+function mediaHtml(u){if(!u)return "";if(isVideo(u))return "<video controls preload='metadata' src='"+u+"'></video>";return "<img class='find-media' src='"+u+"'>";}
+function findingsToItems(c){if(c.findingsItems&&c.findingsItems.length)return c.findingsItems;return (c.findings||"").split("\n").filter(Boolean).map(t=>({text:t,media:""}));}
+function findingsHtml(c){return findingsToItems(c).map(f=>"<div class='fline'><div>"+esc(f.text)+"</div><div>"+mediaHtml(f.media)+"</div></div>").join("");}
+function renderLib(filter){const list=document.getElementById("lib-list");list.innerHTML="";document.getElementById("lib-detail").innerHTML="";cases.filter(c=>!filter||filter==="All"||c.category===filter).forEach(c=>{let d=document.createElement("div");d.className="card";d.innerHTML="<div class='badge'>"+esc(c.category)+"</div><h3 class='click-title'>"+esc(c.title)+"</h3><p class='muted'>"+esc((c.vignette||"").substring(0,110))+"...</p>";d.querySelector("h3").onclick=()=>openLearn(c.id,0);list.appendChild(d);});}
+function openLearn(id,step){const c=cases.find(x=>x.id===id);if(!c)return;const el=document.getElementById("lib-detail");let vids=(c.videos||[]).map(v=>"<video controls preload='metadata' src='"+v+"'></video>").join("");let body="";if(step===0)body="<div class='step'><b>Vignette:</b><br>"+esc(c.vignette)+"</div><div class='navrow'><div class='left'><button class='btn' onclick=\"openLearn('"+id+"',1)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";if(step===1)body="<div class='step'><b>Clips (Play / Pause):</b><br>"+vids+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openLearn('"+id+"',0)\">Back</button><button class='btn' onclick=\"openLearn('"+id+"',2)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";if(step===2)body="<div class='step'><b>Findings / Discussion:</b></div>"+findingsHtml(c)+"<div class='navrow'><div class='left'><button class='btn2' onclick=\"openLearn('"+id+"',1)\">Back</button></div><button class='btn2' onclick=\"document.getElementById('lib-detail').innerHTML=''\")>Close</button></div>";el.innerHTML="<div class='card'><div class='badge'>"+esc(c.category)+"</div><h3>"+esc(c.title)+"</h3>"+body+"</div>";el.scrollIntoView();}
+function renderQuizList(filter){const list=document.getElementById("quiz-list");list.innerHTML="";document.getElementById("quiz-detail").innerHTML="";cases.filter(c=>!filter||filter==="All"||c.category===filter).forEach(c=>{let d=document.createElement("div");d.className="card";d.innerHTML="<div class='badge'>"+esc(c.category)+"</div><h3 class='click-title'>"+esc(c.title)+"</h3>";d.querySelector("h3").onclick=()=>openQuiz(c.id,0);list.appendChild(d);});}
+function openQuiz(id,step){const c=cases.find(x=>x.id===id);if(!c)return;const el=document.getElementById("quiz-detail");let vids=(c.videos||[]).map(v=>"<video controls preload='metadata' src='"+v+"'></video>").join("");let body="";if(step===0)body="<div class='step'><b>Vignette:</b><br>"+esc(c.vignette)+"</div><div class='navrow'><div class='left'><button class='btn' onclick=\"openQuiz('"+id+"',1)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";if(step===1)body="<div class='step'><b>Clips:</b><br>"+vids+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',0)\">Back</button><button class='btn' onclick=\"openQuiz('"+id+"',2)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";if(step===2)body="<div class='step'><b>Question:</b><br>"+esc(c.quiz)+"</div><div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',1)\">Back</button><button class='btn' onclick=\"openQuiz('"+id+"',3)\">Next</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";if(step===3)body="<div class='step'><b>Discussion:</b></div>"+findingsHtml(c)+"<div class='navrow'><div class='left'><button class='btn2' onclick=\"openQuiz('"+id+"',2)\">Back</button></div><button class='btn2' onclick=\"document.getElementById('quiz-detail').innerHTML=''\")>Close</button></div>";el.innerHTML="<div class='card'><div class='badge'>"+esc(c.category)+"</div><h3>"+esc(c.title)+"</h3>"+body+"</div>";el.scrollIntoView();}
+function renderProtos(){const list=document.getElementById("proto-list");list.innerHTML="";if(protocols.length===0){let d=document.createElement("div");d.className="card";d.innerHTML="<p>No Entries Yet.</p>";list.appendChild(d);return;}protocols.forEach(p=>{let d=document.createElement("div");d.className="card";let sec=p.section?"<div class='badge'>"+esc(p.section)+"</div><br>":"";d.innerHTML=sec+"<h3>"+esc(p.title)+"</h3><p>"+esc(p.body||"")+"</p>";list.appendChild(d);});}
+function addFindingRow(text,media){const wrap=document.getElementById("findings-builder");let row=document.createElement("div");row.className="find-row";row.innerHTML="<div style='flex:1'><label>Finding Text</label><input class='fi-text'><label>Photo / Clip Link (Optional)</label><input class='fi-media'></div><div><button class='btn2'>Remove</button></div>";row.querySelector(".fi-text").value=text||"";row.querySelector(".fi-media").value=media||"";row.querySelector("button").onclick=()=>{row.remove();};wrap.appendChild(row);}
+function collectFindings(){let rows=[...document.querySelectorAll("#findings-builder .find-row")];return rows.map(r=>({text:r.querySelector(".fi-text").value.trim(),media:r.querySelector(".fi-media").value.trim()})).filter(x=>x.text||x.media);}
+function clearCaseForm(){document.getElementById("f-title").value="";document.getElementById("f-vignette").value="";document.getElementById("f-videos").value="";document.getElementById("f-videofiles").value="";document.getElementById("f-quiz").value="";document.getElementById("findings-builder").innerHTML="";addFindingRow('','');}
+function saveCase(){const title=document.getElementById("f-title").value.trim()||"Untitled";const category=document.getElementById("f-category").value;const vignette=document.getElementById("f-vignette").value;const quiz=document.getElementById("f-quiz").value;let vids=document.getElementById("f-videos").value.split("\n").map(s=>s.trim()).filter(Boolean);let files=document.getElementById("f-videofiles").files;for(let i=0;i<files.length;i++){vids.push("videos/"+files[i].name);}if(vids.length===0)vids=["https://www.w3schools.com/html/mov_bbb.mp4"];let items=collectFindings();let flat=items.map(x=>x.text).join("\n");if(editingCaseId){let c=cases.find(x=>x.id===editingCaseId);c.title=title;c.category=category;c.vignette=vignette;c.videos=vids;c.quiz=quiz;c.findings=flat;c.findingsItems=items;document.getElementById("admin-msg").textContent="Updated! Export + upload to share.";}else{cases.push({id:"case-"+Date.now(),title,category,vignette,videos:vids,quiz,findings:flat,findingsItems:items});document.getElementById("admin-msg").textContent="Saved Locally! Export + upload cases.json so everyone sees it.";}saveCasesLS();cancelEdit();renderLib("All");renderQuizList("All");renderAdmin();}
+function editCase(id){let c=cases.find(x=>x.id===id);if(!c)return;editingCaseId=id;document.getElementById("f-title").value=c.title;document.getElementById("f-category").value=c.category;document.getElementById("f-vignette").value=c.vignette||"";document.getElementById("f-videos").value=(c.videos||[]).join("\n");document.getElementById("f-quiz").value=c.quiz||"";let wrap=document.getElementById("findings-builder");wrap.innerHTML="";findingsToItems(c).forEach(f=>addFindingRow(f.text,f.media));document.getElementById("case-form-title").textContent="Edit Case";document.getElementById("save-case-btn").textContent="Update Case";document.getElementById("cancel-edit-btn").classList.remove("hidden");}
+function cancelEdit(){editingCaseId=null;document.getElementById("case-form-title").textContent="Add A New Case";document.getElementById("save-case-btn").textContent="Save Case";document.getElementById("cancel-edit-btn").classList.add("hidden");clearCaseForm();}
+function saveProtocol(){const title=document.getElementById("f-ptitle").value||"Untitled protocol";const section=document.getElementById("f-psection").value.trim()||"";const body=document.getElementById("f-pbody").value||"";if(editingProtoId){let p=protocols.find(x=>x.id===editingProtoId);p.title=title;p.section=section;p.body=body;}else{protocols.push({id:"proto-"+Date.now(),title,section,body});}saveProtos();cancelProtoEdit();renderProtos();renderAdminProtos();document.getElementById("proto-msg").textContent="Saved! Export + upload to share.";}
+function editProtocol(id){let p=protocols.find(x=>x.id===id);if(!p)return;editingProtoId=id;document.getElementById("f-ptitle").value=p.title;document.getElementById("f-psection").value=p.section||"";document.getElementById("f-pbody").value=p.body||"";document.getElementById("save-proto-btn").textContent="Update Protocol";document.getElementById("cancel-proto-btn").classList.remove("hidden");}
+function cancelProtoEdit(){editingProtoId=null;document.getElementById("f-ptitle").value="";document.getElementById("f-psection").value="";document.getElementById("f-pbody").value="";document.getElementById("save-proto-btn").textContent="Save Protocol";document.getElementById("cancel-proto-btn").classList.add("hidden");}
+function renderAdmin(){const el=document.getElementById("admin-list");el.innerHTML="<h3>Current Cases ("+cases.length+")</h3>";cases.forEach(c=>{let d=document.createElement("div");d.className="card";d.innerHTML="<b>"+esc(c.title)+"</b> - "+esc(c.category)+" <span style='float:right'><button class='btn2'>Edit</button> <button class='btn2'>Delete</button></span>";let btns=d.querySelectorAll("button");btns[0].onclick=()=>editCase(c.id);btns[1].onclick=()=>{cases=cases.filter(x=>x.id!==c.id);saveCasesLS();renderAdmin();renderLib("All");renderQuizList("All");};el.appendChild(d);});}
+function renderAdminProtos(){const el=document.getElementById("admin-proto-list");if(!el)return;el.innerHTML="<h3>Current Protocols ("+protocols.length+")</h3>";protocols.forEach(p=>{let d=document.createElement("div");d.className="card";let lbl=p.section?" ["+esc(p.section)+"]":"";d.innerHTML="<b>"+esc(p.title)+"</b>"+lbl+" <span style='float:right'><button class='btn2'>Edit</button> <button class='btn2'>Delete</button></span>";let btns=d.querySelectorAll("button");btns[0].onclick=()=>editProtocol(p.id);btns[1].onclick=()=>{protocols=protocols.filter(x=>x.id!==p.id);saveProtos();renderProtos();renderAdminProtos();};el.appendChild(d);});}
+function exportCases(){const blob=new Blob([JSON.stringify({site:siteSettings,categories:categories,cases:cases,protocols:protocols},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="cases.json";a.click();}
+function triggerImport(){document.getElementById("f-import").click();}
+function importCases(event){const f=event.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(){try{const data=JSON.parse(r.result);if(data.cases){cases=data.cases;}else if(Array.isArray(data)){cases=data;}if(data.categories){categories=data.categories;saveCats();}if(data.protocols){protocols=data.protocols;saveProtos();}if(data.site){siteSettings=data.site;localStorage.setItem("mcgill_echo_site",JSON.stringify(siteSettings));}saveCasesLS();rebuildAll();document.getElementById("admin-msg").textContent="Imported "+cases.length+" cases.";}catch(err){document.getElementById("admin-msg").textContent="That file could not be read.";}};r.readAsText(f);event.target.value="";}
+applySiteSettings();buildFilters("lib-filters",renderLib);buildFilters("quiz-filters",renderQuizList);renderLib("All");renderQuizList("All");renderProtos();
+fetch("cases.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(data){if(data.site){siteSettings=data.site;localStorage.setItem("mcgill_echo_site",JSON.stringify(siteSettings));}if(data.categories&&data.categories.length){categories=data.categories;saveCats();}if(data.cases){cases=data.cases;saveCasesLS();}if(data.protocols){protocols=data.protocols;saveProtos();}rebuildAll();}).catch(function(){});
 </script>
 </body>
 </html>
