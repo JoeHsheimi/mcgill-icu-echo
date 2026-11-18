@@ -1,0 +1,46 @@
+{
+  "site": {
+    "title": "McGill ICU Echo",
+    "subtitle": "Critical Care Ultrasonography Teaching Files"
+  },
+  "categories": [
+    "Cardiac - TTE",
+    "Cardiac - TEE",
+    "Cardiac - Interventional",
+    "Lung",
+    "Abdominal",
+    "FAST/eFAST",
+    "Vascular",
+    "Ultrasound - Guided Procedures",
+    "Resuscitative Echocardiography"
+  ],
+  "cases": [
+    {
+      "id": "tamponade-1",
+      "title": "Tamponade - TEE Requested After Suboptimal TTE",
+      "category": "Cardiac - TEE",
+      "vignette": "64-year-old female admitted to ICU with severe cellulitis, develops progressive hypotension refractory to vasopressors. Suboptimal transthoracic imaging by ICU team suggests possible pericardial effusion. TEE requested. See clips below.",
+      "videos": [
+        "https://www.w3schools.com/html/mov_bbb.mp4",
+        "https://www.w3schools.com/html/movie.mp4"
+      ],
+      "quiz": "You see the vignette + clips above. What is the key diagnosis and what two echo signs support tamponade physiology?",
+      "findings": "1. Large circumferential pericardial effusion\n2. Right atrial systolic collapse\n3. Right ventricular diastolic collapse",
+      "findingsItems": [
+        {
+          "text": "1. Large circumferential pericardial effusion",
+          "media": ""
+        },
+        {
+          "text": "2. Right atrial systolic collapse",
+          "media": ""
+        },
+        {
+          "text": "3. Right ventricular diastolic collapse",
+          "media": ""
+        }
+      ]
+    }
+  ],
+  "protocols": []
+}
