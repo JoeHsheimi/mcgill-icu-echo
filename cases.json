@@ -40,6 +40,81 @@
           "media": ""
         }
       ]
+    },
+    {
+      "id": "tte-ie-1",
+      "title": "Transthoracic Infective Endocarditis - Test Case",
+      "category": "Cardiac - TTE",
+      "vignette": "58-year-old male with fever, bacteremia and new murmur. TTE requested to rule out endocarditis. Placeholder vignette for testing.",
+      "videos": [
+        "https://www.w3schools.com/html/mov_bbb.mp4"
+      ],
+      "quiz": "What vegetations or valve lesions do you see? Which valve is involved?",
+      "findings": "Placeholder discussion:\n1. Mobile echodensity on valve leaflet suggestive of vegetation\n2. Assess valve regurgitation severity\n3. Look for abscess, perforation, dehiscence",
+      "findingsItems": [
+        {
+          "text": "Mobile echodensity on valve leaflet suggestive of vegetation",
+          "media": ""
+        },
+        {
+          "text": "Assess valve regurgitation severity",
+          "media": ""
+        },
+        {
+          "text": "Look for abscess, perforation, dehiscence",
+          "media": ""
+        }
+      ]
+    },
+    {
+      "id": "tee-ie-1",
+      "title": "Transesophageal Infective Endocarditis - Test Case",
+      "category": "Cardiac - TEE",
+      "vignette": "62-year-old female with prosthetic valve and persistent bacteremia. Suboptimal TTE. TEE requested. Placeholder vignette for testing.",
+      "videos": [
+        "https://www.w3schools.com/html/mov_bbb.mp4"
+      ],
+      "quiz": "What does TEE add over TTE here? Describe vegetation size, location and complications.",
+      "findings": "Placeholder discussion:\n1. TEE better for prosthetic valve and anterior structures\n2. Measure vegetation size and mobility\n3. Evaluate for paravalvular abscess or leaflet perforation",
+      "findingsItems": [
+        {
+          "text": "TEE better for prosthetic valve evaluation",
+          "media": ""
+        },
+        {
+          "text": "Measure vegetation size and mobility",
+          "media": ""
+        },
+        {
+          "text": "Evaluate for paravalvular abscess or perforation",
+          "media": ""
+        }
+      ]
+    },
+    {
+      "id": "peri-1",
+      "title": "Pericardiocentesis - Ultrasound-Guided - Test Case",
+      "category": "Ultrasound - Guided Procedures",
+      "vignette": "Patient with large pericardial effusion referred for ultrasound-guided pericardiocentesis. Placeholder for procedural steps and clips.",
+      "videos": [
+        "https://www.w3schools.com/html/mov_bbb.mp4"
+      ],
+      "quiz": "What is the safe window? Describe needle trajectory and monitoring during drainage.",
+      "findings": "Placeholder discussion:\n1. Confirm effusion size and location\n2. Choose subxiphoid vs apical window under ultrasound\n3. Continuous visualization of needle tip and wire",
+      "findingsItems": [
+        {
+          "text": "Confirm effusion size and location",
+          "media": ""
+        },
+        {
+          "text": "Choose subxiphoid vs apical window under ultrasound",
+          "media": ""
+        },
+        {
+          "text": "Continuous visualization of needle tip and wire",
+          "media": ""
+        }
+      ]
     }
   ],
   "protocols": []
